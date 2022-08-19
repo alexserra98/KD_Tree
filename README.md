@@ -26,3 +26,7 @@ will have the complete tree.
 The OpenMP implementation is similar to the MPI one although it follows a
 much simpler scheme. The first call of the function is made by master thread
 and then each recursive call is assigned to a new task.
+## Compilation
+The src folder contains a Makefile 
+  make omp/mpi
+      
