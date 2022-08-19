@@ -27,6 +27,13 @@ The OpenMP implementation is similar to the MPI one although it follows a
 much simpler scheme. The first call of the function is made by master thread
 and then each recursive call is assigned to a new task.
 ## Compilation
-The src folder contains a Makefile 
-  make omp/mpi
-      
+The src folder contains a Makefile; you can specify the parallalelization framework in the following way:    
+```
+    make omp/mpi
+```   
+
+
+| Parameter | Value           | Default   | 
+|-----------|-----------------|-----------|          
+| TYPE      | float/double    | float     |
+| MPITY     | MPI_FLOAT/DOUBLE| MPI_FLOAT |
