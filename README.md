@@ -9,7 +9,8 @@ The algorithm conist essentialy in these three steps
 - picking round-robin an axis
 - select the median point over that axis
 - reiterate on the two halves at the left and right of the selected point
-The algorithm stops when the region of the spaces that the program is parsing contains only one point. 
+The algorithm stops when the region of the spaces that the program is parsing contains only one point.
+The output consist in a graphical representations of the tree and time elapsed during the computation
 ## Parallelization
 ### MPI
 The parallelization of the serial algorithm through the MPI interface consists
@@ -32,10 +33,16 @@ The src folder contains a Makefile; you can specify the parallalelization framew
     make omp/mpi
 ```   
 
-In addition you can specify the data type of the point of the dataset with the following flags:
+In addition you can specify the data type of the points of the dataset and wheter you want the output to be printed (to print you have to set it to 1) with the following flags:
 | Parameter | Value           | Default   | 
 |-----------|-----------------|-----------|          
 | TYPE      | float/double    | float     |
 | MPITY     | MPI_FLOAT/DOUBLE| MPI_FLOAT |
+| OUTPUT    | 0/1             | 0         |
 
 ## Run
+The mpi program takes as an argument the dimension of the dataset that will be generated randomly, while the omp one takes first the dimension of the dataset then the number of thread to employ.
+## Further Development
+-[] Add printing routine 
+-[] Passing the dataset as an argument
+-[] Generalize to K-dimensional space
