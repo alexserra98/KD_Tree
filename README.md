@@ -43,6 +43,6 @@ In addition you can specify the data type of the points of the dataset and whete
 ## Run
 The mpi program takes as an argument the dimension of the dataset that will be generated randomly, while the omp one takes first the dimension of the dataset then the number of thread to employ.
 ## Further Development
-- [] Add printing routine
-- [] Passing the dataset as an argument
-- [] Generalize to K-dimensional space
+- [ ] Add printing routine
+- [ ] Passing the dataset as an argument
+- [ ] Generalize to K-dimensional space
