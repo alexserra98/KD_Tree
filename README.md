@@ -1,5 +1,5 @@
 # Parallel KD_Tree
-This repository contains two implementations of a parallel kd-tree using MPI and OpenMP in C++11. The work was written as an assignment of FHPC course 2021-2022 @ DSSC, Units.
+This repository contains two implementations of a parallel kd-tree using MPI and OpenMP in C++11. The work was written as an assignment of FHPC course 2021-2022 @ DSSC, Units. 
 ## Introduction
 A K-dimensional tree is a data structure widely used for partitioning and organizing
 points in a k-dimensional space, they’re involved in many different applications
@@ -9,9 +9,11 @@ The algorithm conist essentialy in these three steps
 - picking round-robin an axis
 - select the median point over that axis
 - reiterate on the two halves at the left and right of the selected point
-The algorithm stops when the region of the spaces that the program is parsing contains only one point.
-The output consist in a graphical representations of the tree and time elapsed during the computation
+The algorithm stops when the region of the spaces that the program is parsing contains only one point.  
+The output consist in a graphical representations of the tree and time elapsed during the computation.
+The focus was to study and compare the scalability and the performance of this two parallelization framework, all the details and the commentary of the benchmarks are in the /report section
 ## Parallelization
+
 ### MPI
 The parallelization of the serial algorithm through the MPI interface consists
 in distributing the recursive calls among the processes provided. The communication among processess is organized in the following way: 
