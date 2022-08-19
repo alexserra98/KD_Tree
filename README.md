@@ -32,8 +32,10 @@ The src folder contains a Makefile; you can specify the parallalelization framew
     make omp/mpi
 ```   
 
-
+In addition you can specify the data type of the point of the dataset with the following flags:
 | Parameter | Value           | Default   | 
 |-----------|-----------------|-----------|          
 | TYPE      | float/double    | float     |
 | MPITY     | MPI_FLOAT/DOUBLE| MPI_FLOAT |
+
+## Run
