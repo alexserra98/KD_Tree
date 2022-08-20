@@ -11,6 +11,8 @@
 #include <mpi.h>
 #include <exception>
 #include <random>
+#include <fstream>
+
 
 #define COUNT 10
 #define xdim 10
@@ -40,7 +42,7 @@ int main(int argc, char* argv[]){
   std::vector<int> list_rank; // order of ranks for updating indexes
   list_rank.push_back(0);   
   MPI_Init ( NULL, NULL );
-    /* dataset creation */
+  /* dataset creation */
   tbegin =MPI_Wtime();
   dataset_creation(mydata);
   tend = MPI_Wtime();
@@ -379,8 +381,11 @@ int main(int argc, char* argv[]){
       }
     
     #if OUTPUT==1
-    //for(std::size_t i{0}; i<dim_tot; ++i) std::cout<<"{data: "<<parallel_tree[i].p.data[0]<<" , "<<parallel_tree[i].p.data[1]<<"; right: "<<parallel_tree[i].right<<" left: "<<parallel_tree[i].left<<"}" <<std::endl;
+    std::fstream myfile;
+    myfile.open("/home/alexserra98/uni/HPC/KD_Tree/out/output", std::ios::out);
+    for(std::size_t i{0}; i<dim_tot; ++i) myfile<<"{data: "<<parallel_tree[i].p.data[0]<<" , "<<parallel_tree[i].p.data[1]<<"; right: "<<parallel_tree[i].right<<" left: "<<parallel_tree[i].left<<"}" <<std::endl;
      if(dim_tot<100) print2D(0, parallel_tree);
+    myfile.close();
     #endif
      end1 = MPI_Wtime();
      elapsed1 = end1 - begin1;
