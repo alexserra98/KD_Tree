@@ -9,6 +9,7 @@
 #include <numeric>
 #include <chrono>
 #include <random>
+#include <fstream>
 #define DEBUG2 1
 #define COUNT 10
 #define xdim 10
@@ -167,6 +168,18 @@ void position_in_the_tree(int& levels, int& level, int& axis, int& mydim,const i
 
 }
 template <typename T>
+void dataset_creation(std::vector<point<T>>& mydata) noexcept {
+    std::fstream nufile;
+    nufile.open("/home/alexserra98/uni/HPC/KD_Tree/data/data", std::ios::in);
+    // to change for k dimension
+    T tmp1, tmp2;
+    while(nufile >> tmp1 && nufile >> tmp2){
+        mydata.push_back(point<TYPE>(tmp1,tmp2));
+    }    
+    nufile.close();
+}
+/*
+template <typename T>
 void dataset_creation(std::vector<point<T>>& mydata, const int mydim) noexcept {
   std::default_random_engine generator;
   std::uniform_real_distribution<double> distribution(0.0,100.0);
@@ -176,6 +189,7 @@ void dataset_creation(std::vector<point<T>>& mydata, const int mydim) noexcept {
     mydata[i]=point<TYPE>(tmpx,tmpy);
   }
 }
+*/
 template <typename T>
 void merge_trees(std::vector<node<T>>& pt, std::vector<node<T>>& st, const int size_p){
   if(size_p!=0)  pt[size_p-1].left = size_p;

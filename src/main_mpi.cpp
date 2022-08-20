@@ -27,21 +27,30 @@
 
 int main(int argc, char* argv[]){
    
+  double begin1, end1, tbegin,tend, elapsed1,telapsed; 
   int dim_tot;
-  dim_tot = std::stoi(argv[1]); 
+  //dim_tot = std::stoi(argv[1]); 
   std::vector<point<TYPE>> mydata;
-           
+
+
+
   MPI_Datatype MPI_point; // custom datatype
   MPI_Datatype MPI_node; // custom datatype
   
   std::vector<int> list_rank; // order of ranks for updating indexes
   list_rank.push_back(0);   
   MPI_Init ( NULL, NULL );
+    /* dataset creation */
+  tbegin =MPI_Wtime();
+  dataset_creation(mydata);
+  tend = MPI_Wtime();
+  telapsed = tend - tbegin;
+  dim_tot = mydata.size();
   /* MPI Vars */
   MPI_Status status;
   int rank;
   int size;
-  double begin1, end1, tbegin,tend, elapsed1,telapsed;
+  
   
 
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -151,11 +160,12 @@ int main(int argc, char* argv[]){
     mydata.resize(mydim);
     parallel_tree.reserve(mydim+1);
     /* dataset creation */
+    /*
     tbegin =MPI_Wtime();
     dataset_creation(mydata,mydim);
     tend = MPI_Wtime();
     telapsed = tend - tbegin;
- 
+    */
   }
 
   else{ 
@@ -368,8 +378,8 @@ int main(int argc, char* argv[]){
       
       }
     
-    #ifdef OUTPUT
-    for(std::size_t i{0}; i<dim_tot; ++i) std::cout<<"{data: "<<parallel_tree[i].p.data[0]<<" , "<<parallel_tree[i].p.data[1]<<"; right: "<<parallel_tree[i].right<<" left: "<<parallel_tree[i].left<<"}" <<std::endl;
+    #if OUTPUT==1
+    //for(std::size_t i{0}; i<dim_tot; ++i) std::cout<<"{data: "<<parallel_tree[i].p.data[0]<<" , "<<parallel_tree[i].p.data[1]<<"; right: "<<parallel_tree[i].right<<" left: "<<parallel_tree[i].left<<"}" <<std::endl;
      if(dim_tot<100) print2D(0, parallel_tree);
     #endif
      end1 = MPI_Wtime();

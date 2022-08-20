@@ -56,7 +56,7 @@ int main(int argc, char* argv[]){
             #pragma omp barrier
             #pragma omp master
             {
-                #ifdef OUTPUT
+                #if OUTPUT == 1
                 print2D(0, parallel_tree);
 		    #endif
             }
